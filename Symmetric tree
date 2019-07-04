@@ -18,6 +18,7 @@ Approach: we will consider them as two trees. we will check the roots initally a
 and so on check.
 
 CODE: (function only)
+1. RECURSIVE:
  public static boolean checkSymmetric(Node a, Node b)    // a and b is the same root nodes
  {
         if(a==null && b==null)
@@ -30,3 +31,41 @@ CODE: (function only)
         
         return false;   
  }
+ 
+ 2. ITERATIVE:
+ public static boolean checkSymmetric(Node root)
+ {
+        if(root==null)
+        return true;
+        
+        if(root.left==null && root.right==null)
+        return true;
+        
+        Queue<Node> q=new LinkedList<Node>();
+        q.add(root.left);
+        q.add(root.right);
+        
+        while(!q.isEmpty())
+        {
+                    left=q.remove();
+                    right=q.remove();
+                    
+                    if(left==null && right==null)
+                    {
+                         continue;
+                    }
+                    
+                    if((left==null && right!=null ) && (left!=null && right==null))
+                         return false;
+                         
+                    if(left.value!=right.value)
+                         return false;
+                         
+                    q.add(left.left);
+                    q.add(right.right);
+                    q.add(left.right);
+                    q.add(right.left);
+                    
+        }
+ }
+ 
