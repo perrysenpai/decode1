@@ -1,0 +1,32 @@
+To check if the tree is symmetric or not
+
+     1
+   /   \
+  2     2
+ / \   / \
+3   4 4   3
+
+But the following is not:
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
+   
+Approach: we will consider them as two trees. we will check the roots initally and the check left of one is equal to right of other AND right of one is equal to left of other.
+and so on check.
+
+CODE: (function only)
+ public static boolean checkSymmetric(Node a, Node b)    // a and b is the same root nodes
+ {
+        if(a==null && b==null)
+        return true;
+        
+        if(a.data==b.data)
+        {
+              return (checkSymmetric(a.left, b.right) && checkSymmetric(a.right, b.left));
+        }
+        
+        return false;   
+ }
