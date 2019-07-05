@@ -1,0 +1,35 @@
+Problem: 
+Given a Binary Tree and a target key, your task is to complete the function getLevel() that returns the level of the key from the given binary tree.
+
+           3
+         /   \
+        2     5
+      /   \
+     1     4
+Key: 4
+Level: 3 
+
+APPROACH :  we start with root node and start traversing the left and right subtree. when key value is encountered (lets say in the left subtree)
+the right one has still no key value. we take advantage of this , which is illustrated int eh code below:
+
+public static int getLevel(Node root, int key)
+{
+    if(root==null)
+    return 0;
+    
+    if(root.data==key)
+    return 1;
+    
+    int left=getLevel(root.left, key);     // whenever node with key value is found one of the values i.e left or right becomes one , other is zero.
+    int right=getLevel(root.right, key);
+    
+    if(left==0 && right==0)
+    return 0;
+    
+   
+    if(left==0)
+    return right+1;
+    
+    return left+1;  // for right==0  
+    // due to this the value of left or right is increases by one as we go up the tree.
+}
