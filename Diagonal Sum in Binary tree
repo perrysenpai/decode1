@@ -1,0 +1,36 @@
+https://practice.geeksforgeeks.org/problems/diagonal-sum-in-binary-tree/1
+
+Solution: Using Queue:
+ public void diagonalsum(Node root)
+ {
+        Queue<Node> q=new LinkedList<Node>();
+        int ar[]=new int[100];
+        q.add(root);
+        
+        int size=1;
+        int i=0;
+        while(!q.isEmpty())
+        {
+            while(size-->0)
+            {
+                Node temp=q.peek();
+                while(temp!=null)
+                {
+                if(temp.left!=null)
+                q.add(temp.left);
+                
+                ar[i]+=temp.data;
+                temp=temp.right;
+                }
+                q.remove();
+            }
+            i++;
+            size=q.size();
+            
+        }
+        for(i=0;i<ar.length;i++)
+      {
+          if(ar[i]!=0)
+          System.out.print(ar[i]+" ");
+      }
+ }
