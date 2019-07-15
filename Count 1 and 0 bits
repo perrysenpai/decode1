@@ -1,6 +1,7 @@
 https://practice.geeksforgeeks.org/problems/mrs-s-java-bits-set-1/1
 
-public void count(long n){
+Solution 1:
+        public void count(long n){
         int zero=0;
         int ones=0;
         while(n>0)
@@ -13,4 +14,13 @@ public void count(long n){
             n=n>>1;
         }
         System.out.println(ones+" "+zero);
+    }
+    
+Solution 2: Recursive : gves count of set bits
+     public long count(long n)
+    {
+        if(n==0)
+        return 0;
+        
+        return (n & 1) + cnt(n >> 1); 
     }
