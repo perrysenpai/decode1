@@ -1,0 +1,16 @@
+https://practice.geeksforgeeks.org/problems/mrs-s-java-bits-set-1/1
+
+public void count(long n){
+        int zero=0;
+        int ones=0;
+        while(n>0)
+        {
+            if((n&1)==1)
+            ones++;
+            else
+            zero++;
+            
+            n=n>>1;
+        }
+        System.out.println(ones+" "+zero);
+    }
