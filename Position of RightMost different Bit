@@ -1,6 +1,7 @@
 Given two numbers return the rightmost set bit:
 
-Approach:  let the number be: 18 : 1 0 0 1 0   
+Approach:  
+          let the xor of two numbers be: 18 : 1 0 0 1 0   
           taking two's complement: 0 1 1 1 0
           
           a=x^y;
