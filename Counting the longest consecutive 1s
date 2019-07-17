@@ -1,0 +1,33 @@
+Given a number N. The task is to find the length of the longest consecutive 1s in its binary representation.
+
+Approach: Lets take a number 11011110
+          if we left shift the number by 1 and and it with the current number than the number of time loop runs before the number becomes 0 
+          is the count of consequtive 1s.
+          
+      while(x!=0)
+	    {
+	        x&=(x<<1);
+	        count++;
+	    }
+	    
+	    System.out.println(count);
+      
+      
+      
+      e.g.  11011110
+      ls    10111100     
+      &     10011100
+      
+      ls    00111000
+      &     00011000
+      
+      ls  ` 00110000
+      &     00010000
+      
+      ls    00100000
+      &     00000000    i.e 4 
+      
+      
+      this happens because lets say there are 4 consequtive 1s, with each each ls operation only 3 of these one will line up and and will 
+      procuce 3 consequtive ones
+      after this ls of these produces 2 1s lining up and so on until no 1s line up
