@@ -1,5 +1,19 @@
 https://practice.geeksforgeeks.org/problems/mrs-s-java-bits-set-1/1
 
+Solution 0:  Brian Kernighan’s Algorithm:
+     int countSetBits(int n) 
+    { 
+        int count = 0; 
+        while (n > 0) 
+        { 
+            n &= (n - 1) ; 
+            count++; 
+        } 
+        return count; 
+    }
+    
+Solution 0*: Using Lookup table: System.out.println(Integer.bitCount(4)); 
+
 Solution 1:
         public void count(long n){
         int zero=0;
