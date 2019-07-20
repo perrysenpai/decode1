@@ -65,9 +65,9 @@ public class MinHeap
               if(right<size && Heap[right]<Heap[smallest])
               smallest=right;
               
-              if(smallest!=i)
+              if(smallest!=pos)
               {
-                  swap(i,smallest);
+                  swap(pos,smallest);
                   MinHeapify(smallest);
               }  
           }
