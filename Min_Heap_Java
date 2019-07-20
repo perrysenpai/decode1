@@ -1,0 +1,163 @@
+Min_Heap: It is a complete binary tree, in which the value of each internal nodes is less than or equal to the value of its children.
+
+Program:
+        Operations on MinHeap: 1) getMin():It returns the root element of the minheap. Complecity of this is o(1);
+                               2) extractMin(): It removes the minimun element from the min heap.after this to maintain minheap we need to 
+                                  heapify the tree so the complexity of this function is O(logn).
+                               3). DecreaseKey(): it takes O(logn). the value decreased is still greater than the parent we do nothing otherwise we move 
+                                  up to fix the violated property.
+                               3). insert(); we insert a key value. if the value is greater of equal to that of it's parent then we dont need
+                                   to do anything else we need to traverse up the tree to fix. Takes O(logn)time.
+                               4). delete();this takes O(logn) time what we do is replace the value to be deleted with -infinity by calling decreaseKey() 
+                                    method. after this we use extractmin() to remove this element.
+
+          Arr[(i-1)/2]	Returns the parent node
+          Arr[(2*i)+1]	Returns the left child node
+          Arr[(2*i)+2]  Returns the right child node
+
+
+public class MinHeap
+      {
+          private int[] Heap;    
+          private int size;    //size of the heap;
+          private int maxsize; //max permitible size of heap
+          
+          public MinHeap(int maxsize)  //constructor
+          {
+               this.maxsize=maxsize;
+               this.size=0;     // why not size=0;
+               Heap[]=new int[maxsize+1];
+               //Heap[0]=Integer.MIN_VALUE;
+          }
+          
+          
+          private int parent(int pos)
+          {
+              return (pos-1)/2;
+          }
+          
+          private int leftChild(int pos)
+          {
+              return (2*pos+1);
+          }
+          
+          private int rightChild(int pos)
+          {
+              return (2*pos+2);
+          }
+          
+          private int swap(int x, int y)
+          {
+                int temp=Heap[x];
+                Heap[x]=Heap[y];
+                Heap[y]=temp;
+          }
+          
+          private int MinHeapify(int pos)
+          {
+              int left=leftChild(pos);
+              int right=rightChild(pos);
+              int smallest=pos;
+              
+              if(left<size && Heap[left]<Heap[smallest])
+              smallest=left;
+              
+              if(right<size && Heap[right]<Heap[smallest])
+              smallest=right;
+              
+              if(smallest!=i)
+              {
+                  swap(i,smallest);
+                  MinHeapify(smallest);
+              }  
+          }
+          
+          private int extractMin()
+          {
+              if (heap_size <= 0) 
+              return INT_MAX;
+              
+              if (heap_size == 1) 
+              { 
+              size--; 
+              return heap[0]; 
+              } 
+              
+              int root=heap[0];
+              Heap[0]=Heap[size-1];
+              size--;
+              MinHeapify(0);
+              return root;
+              
+          }
+          
+          private void insert(int element)
+          {
+              if(size>=maxsize)
+              {
+              System.out.println("Cannot Insert");
+              return;
+              }
+              
+              size++;
+              Heap[size]=element;
+              int current=size;
+              while(Heap[current]<Heap[parent(current)])
+              {
+              swap(current,parent(current));
+              current = parent(current); 
+              }  
+          }
+          
+          private void decreaseKey(int pos, int val)
+          {
+              Heap[pos]=val;
+              while(Heap[pos]<Heap[parent(pos)])
+              {
+              swap(pos,parent(pos));
+              pos = parent(current); 
+              }  
+          }
+          
+          private void deleteKey(int pos)
+          {
+              decreaseKey(pos,Integer.MIN_VALUE);
+              extractMin();
+          }
+          
+          public void minHeap()
+          {
+              for(int i=size/2; i>=0; i--)
+              MinHeapify(i);
+          }
+          
+          public void print() 
+          { 
+            for (int i = 1; i <= size / 2; i++) 
+            System.out.println(" PARENT : " + Heap[i]  + " LEFT CHILD : " + Heap[2 * i]   + " RIGHT CHILD :" + Heap[2 * i + 1]);
+          }
+          
+          
+          
+          public static void main(String[] arg) 
+    { 
+        System.out.println("The Min Heap is "); 
+        MinHeap minHeap = new MinHeap(15); 
+        minHeap.insert(5); 
+        minHeap.insert(3); 
+        minHeap.insert(17); 
+        minHeap.insert(10); 
+        minHeap.insert(84); 
+        minHeap.insert(19); 
+        minHeap.insert(6); 
+        minHeap.insert(22); 
+        minHeap.insert(9); 
+        minHeap.minHeap(); 
+  
+        minHeap.print(); 
+        System.out.println("The Min val is " + minHeap.remove()); 
+    } 
+          
+          
+      
+      }
